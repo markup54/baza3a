@@ -1,0 +1,31 @@
+package pl.zabrze.zs10.room3a;
+
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
+
+import java.util.ArrayList;
+
+@Dao
+public interface DaoPracownicy {
+    @Insert
+    public void dodajPracownika(Pracownik pracownik);
+
+    @Insert
+    public void dodajWieluPracownikow(Pracownik ...pracownicy);
+
+    @Delete
+    public void  usunPracownika(Pracownik pracownik);
+
+    @Update
+    public void zaktualizujDanePracownika(Pracownik pracownik);
+
+    @Query("Select * from pracownicy where jezykOjczysty='polski'")
+    public ArrayList<Pracownik> wypiszPracownikowPolskoJezycznych();
+
+    @Query("Select * from pracownicy where jezykObcyKomunikatywny = :jezyk")
+    public ArrayList<Pracownik> wypiszPracownikowMowiacychJezykiem(String jezyk);
+
+}
